@@ -6,7 +6,9 @@ home = /home/ubuntu/django_venv/
 uid = ubuntu
 gid = ubuntu
 
-http = :8080
+socket = /tmp/grad_project.sock
+chmod-socket = 666
+chown-socket = ubuntu:ubuntu
 
 enable-threads = true
 master = true
