@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {% load static %}
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Maxim Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Maxim
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">-->
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+      <div class="logo">
+        <h1><a href="index.html">MURPHY</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+          <ul>
+              <li><a class="nav-link scrollto active" href="#hero">홈</a></li>
+              <li><a class="nav-link scrollto" href="#about">추천받기</a></li>
+              <li><a class="nav-link scrollto" href="#services">소개</a></li>
+              <li><a class="nav-link scrollto " href="#portfolio">노래 모음</a></li>
+              <li><a class="nav-link scrollto" href="#team">팀</a></li>
+              <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+      <ul>
+        <li><a href="#">Drop Down 1</a></li>
+        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+          <ul>
+            <li><a href="#">Deep Drop Down 1</a></li>
+            <li><a href="#">Deep Drop Down 2</a></li>
+            <li><a href="#">Deep Drop Down 3</a></li>
+            <li><a href="#">Deep Drop Down 4</a></li>
+            <li><a href="#">Deep Drop Down 5</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Drop Down 2</a></li>
+        <li><a href="#">Drop Down 3</a></li>
+        <li><a href="#">Drop Down 4</a></li>
+      </ul>
+    </li>-->
+          </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      <h1>Welcome to MURPHY</h1>
+      <h2>Music Recommendation Through Profiling Human Faces, for You!</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Recommended</a>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+      <!-- ======= About Section ======= -->
+      <section id="about" class="about">
+          <div class="container">
+
+              <div class="row">
+                  <div class="col-xl-6 col-lg-7" data-aos="fade-right">
+                      <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                      <img src="{% static 'assets/img/about-img.jpg' %}" class="img-fluid" id="aboutImg" alt="">
+                      <video id="cameraView"></video>
+                  </div>
+                  <div class="col-xl-6 col-lg-5 pt-5 pt-lg-0">
+                      <h3 data-aos="fade-up">사진을 올리고, 당신의 기분에 딱 맞는 음악을 추천받아 보세요!</h3>
+                      <p data-aos="fade-up">
+                          최신 인공지능을 사용해 당신의 표정을 분석하고, 지금 당신 기분을 읽어 딱 맞는 노래를 추천해 드립니다.
+                      </p>
+                      <div class="icon-box" data-aos="fade-up">
+                          <i class="bx bx-receipt"></i>
+                          <h4>미리 찍은 사진을 올리거나</h4>
+                          <button class="btn-get-started" id="selectImageButton">사진을 업로드 해보세요</button>
+                      </div>
+
+                      <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                          <i class="bx bx-cube-alt"></i>
+                          <h4>지금 사진을 찍어 보세요!</h4>
+                          <button class="btn-get-started" id="cameraButton">사진 찍기</button>
+                      </div>
+
+                      <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                          <i class="bx bx-cube-alt"></i>
+                          <button class="btn-get-started" id="uploadButton">사진 올리기!</button>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </section><!-- End About Section -->
+      <!-- ======= Steps Section ======= -->
+      <section id="steps" class="steps section-bg">
+          <div class="container">
+
+              <div class="row no-gutters">
+
+                  <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in">
+                      <span>01</span>
+                      <h4>설명 1</h4>
+                      <p>설명이 필요한 문구 1</p>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="100">
+                      <span>02</span>
+                      <h4>설명 2</h4>
+                      <p>설명이 필요한 문구 2</p>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="200">
+                      <span>03</span>
+                      <h4> 설명 3</h4>
+                      <p>설명이 필요한 문구 3</p>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="300">
+                      <span>04</span>
+                      <h4>설명 4</h4>
+                      <p>설명이 필요한 문구 4</p>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="400">
+                      <span>05</span>
+                      <h4>설명 5</h4>
+                      <p>설명이 필요한 문구 5</p>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="500">
+                      <span>06</span>
+                      <h4>설명 6</h4>
+                      <p>설명이 필요한 문구 6</p>
+                  </div>
+
+              </div>
+
+          </div>
+      </section><!-- End Steps Section -->
+
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services section-bg">
+          <div class="container">
+
+              <div class="section-title" data-aos="fade-up">
+                  <h2>프로젝트 소개</h2>
+                  <p>인공지능을 활용해 얼굴과 표정을 인식하여 맞춤 음악을 추천하는 웹사이트</p>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">
+                      <div class="icon-box icon-box-pink">
+                          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                          <h4 class="title"><a href="">성별 & 나이 분석</a></h4>
+                          <p class="description">인공지능이 당신의 성별과 나이를 인식합니다.</p>
+                      </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                      <div class="icon-box icon-box-cyan">
+                          <div class="icon"><i class="bx bx-file"></i></div>
+                          <h4 class="title"><a href="">감정 분석</a></h4>
+                          <p class="description">표정을 읽고, 표정과 성별, 나이에 따라 정확하게 타겟팅한 노래를 맞춤 추천합니다.</p>
+                      </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+                      <div class="icon-box icon-box-green">
+                          <div class="icon"><i class="bx bx-tachometer"></i></div>
+                          <h4 class="title"><a href="">상세 설명 3</a></h4>
+                          <p class="description">추가적인 상세 설명 3</p>
+                      </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="300">
+                      <div class="icon-box icon-box-blue">
+                          <div class="icon"><i class="bx bx-world"></i></div>
+                          <h4 class="title"><a href="">상세 설명 4</a></h4>
+                          <p class="description">추가적인 상세 설명 4</p>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+      </section><!-- End Services Section -->
+      <!-- ======= Portfolio Section ======= -->
+      <!-- 이걸 추천 음악 리스트로 활용-->
+      <section id="portfolio" class="portfolio section-bg">
+          <div class="container">
+
+              <div class="section-title" data-aos="fade-up">
+                  <h2>추천하는 노래들</h2>
+                  <p>당신의 표정에 따라 인공지능이 추천하는 맞춤 노래들입니다! 만약 사진을 업로드하지 않았을 경우, 그날 멜론 차트 1위곡이 재생됩니다.</p>
+              </div>
+
+              <div class="row" data-aos="fade-up">
+                  <div class="col-lg-12 d-flex justify-content-center">
+                      <ul id="portfolio-flters">
+                          <li data-filter="*" class="filter-active">All</li>
+                          <li data-filter=".filter-app">App</li>
+                          <li data-filter=".filter-card">Card</li>
+                          <li data-filter=".filter-web">Web</li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="row portfolio-container" data-aos="fade-up">
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>App 1</h4>
+                              <p>App</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>Web 3</h4>
+                              <p>Web</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>App 2</h4>
+                              <p>App</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>Card 2</h4>
+                              <p>Card</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>Web 2</h4>
+                              <p>Web</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>App 3</h4>
+                              <p>App</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>Card 1</h4>
+                              <p>Card</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>Card 3</h4>
+                              <p>Card</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                      <div class="portfolio-wrap">
+                          <img src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>Web 3</h4>
+                              <p>Web</p>
+                              <div class="portfolio-links">
+                                  <a href="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                                  <a href="{% static 'portfolio-details.html' %}" title="More Details"><i class="bx bx-link"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+      </section><!-- End Portfolio Section -->
+      <!-- ======= Team Section ======= -->
+      <section id="team" class="team">
+          <div class="container">
+
+              <div class="section-title" data-aos="fade-up">
+                  <h2>Team</h2>
+                  <p>인하대학교 전자공학과 2023년도 가을학기 졸업 프로젝트-송병철 교수님 분반 2조</p>
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+                      <div class="member">
+                          <img src="{% static 'assets/img/team/team-1.jpg' %}" class="img-fluid" alt="">
+                          <div class="member-info">
+                              <div class="member-info-content">
+                                  <h4>신동범</h4>
+                                  <span>Web APP</span>
+                              </div>
+                              <div class="social">
+                                  <a href=""><i class="bi bi-twitter"></i></a>
+                                  <a href=""><i class="bi bi-facebook"></i></a>
+                                  <a href=""><i class="bi bi-instagram"></i></a>
+                                  <a href=""><i class="bi bi-linkedin"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                      <div class="member">
+                          <img src="{% static 'assets/img/team/team-2.jpg' %}" class="img-fluid" alt="">
+                          <div class="member-info">
+                              <div class="member-info-content">
+                                  <h4>강인식</h4>
+                                  <span>AI</span>
+                              </div>
+                              <div class="social">
+                                  <a href=""><i class="bi bi-twitter"></i></a>
+                                  <a href=""><i class="bi bi-facebook"></i></a>
+                                  <a href=""><i class="bi bi-instagram"></i></a>
+                                  <a href=""><i class="bi bi-linkedin"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+      </section><!-- End Team Section -->
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>Murphy</h3>
+              <p>
+                인하대학교 전자공학과 <br>
+                2023년도 졸업 프로젝트<br><br>
+                <strong>Phone:</strong> +82 000 0000 0000<br>
+                <strong>Email:</strong> info@example.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Maxim</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
