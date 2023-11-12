@@ -8,4 +8,7 @@ server {
         uwsgi_pass  unix:///tmp/grad_project.sock;
         include     uwsgi_params;
     }
+    location /static/ {
+        alias /srv/grad_project/staticfiles/;
+    }
 }
