@@ -334,14 +334,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Send the FormData to the server using fetch
             // 서버는 나중에 추가할 예정
-            fetch('upload.php', {
+            const endpoint = '/ai_endpoint/'
+            fetch(endpoint, {
                 method: 'POST',
                 body: formData,
             })
-                .then(response => response.text())
+                .then(response => response.json())
                 .then(data => {
                     // Handle the response from the server
+                    data.age = decodeURIComponent(JSON.parse('"' + data.age + '"'));
+                    data.gender = decodeURIComponent(JSON.parse('"' + data.gender + '"'));
+                    data.emotion = decodeURIComponent(JSON.parse('"' + data.emotion + '"'));
+
+                    var s = document.getElementById('age_p');
+                    s.innerText = s.textContent = data.age;
+                    var l = document.getElementById('gender_p');
+                    l.innerText = l.textContent = data.gender;
+                    var q = document.getElementById('emotion_p');
+                    q.innerText = q.textContent = data.emotion;
                     console.log(data);
+                    console.log((s,l,q))
                 })
                 .catch(error => {
                     console.error('Error:', error);

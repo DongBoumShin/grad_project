@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
     ".ap-northeast-2.compute.amazonaws.com",
     "google.com",
     "ip-172-31-35-135:8080",
-    ".murphyproject.store"
+    ".murphyproject.store",
+    "127.0.0.1",
 ]
 
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
