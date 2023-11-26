@@ -310,6 +310,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const imageInput = document.getElementById('imageInput');
     const selectedImage = document.getElementById('aboutImg');
 
+    let person_data = ['default', 'default ', 'default',]
+    let music_data = ['Ballad', 'Ballad', 'Ballad']
+
     selectImageButton.addEventListener('click', function () {
         imageInput.click(); // Trigger the file input element
     });
@@ -347,13 +350,30 @@ document.addEventListener('DOMContentLoaded', function () {
                     data.emotion = decodeURIComponent(JSON.parse('"' + data.emotion + '"'));
 
                     var s = document.getElementById('age_p');
-                    s.innerText = s.textContent = data.age;
+                    s.innerText = s.textContent = person_data[0] = data.age;
                     var l = document.getElementById('gender_p');
-                    l.innerText = l.textContent = data.gender;
+                    l.innerText = l.textContent = person_data[0] = data.gender;
                     var q = document.getElementById('emotion_p');
-                    q.innerText = q.textContent = data.emotion;
-                    console.log(data);
-                    console.log((s,l,q))
+                    q.innerText = q.textContent = person_data[0]= data.emotion;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
+
+    const datafield = document.getElementById('age_p')
+    datafield.addEventListener('change', function () {
+        if (person_data != ['default', 'default ', 'default',]) {
+            const endpoint = '/music_endpoint/'
+            fetch(endpoint, {
+                method: 'POST',
+                body: person_data,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    music_data = data.data
                 })
                 .catch(error => {
                     console.error('Error:', error);
