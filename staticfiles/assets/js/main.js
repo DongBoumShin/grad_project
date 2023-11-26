@@ -383,6 +383,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (let i = 0; i < 3; i++) {
                     music_data[i] = codes[data.data[i]];
                 }
+                console.log(music_data);
+                console.log(codes);
                 var s = document.getElementById('app_li');
                 s.innerText = music_data[0];
                 var l = document.getElementById('card_li');
@@ -395,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         var appdiv = document.getElementById(container + i);
                         var texth4 = appdiv.querySelector(".portfolio-info h4");
                         texth4.textContent = data.songs[j][0][i - 1];
-                        var textp = appdiv.querySelector("portfolio-info p");
+                        var textp = appdiv.querySelector(".portfolio-info p");
                         textp.textContent = data.songs[j][1][i - 1];
                         var imgs = appdiv.querySelector(".portfolio-wrap img")
                         imgs.src = data.songs[j][2][i - 1]
