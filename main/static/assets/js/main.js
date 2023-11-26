@@ -310,8 +310,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const imageInput = document.getElementById('imageInput');
     const selectedImage = document.getElementById('aboutImg');
 
-    let person_data = ['default', 'default ', 'default',]
-    let music_data = ['Ballad', 'Ballad', 'Ballad']
+    let person_data = ['default', 'default ', 'default',];
+    let music_data = ['Ballad', 'Ballad', 'Ballad'];
+    const codes = {
+        'GN0100': '발라드', 'GN0200': '아이돌', 'GN1500': 'OST', 'GN0300': '힙합',
+        'GN0400':'RNB,소울', 'GN0700':'트로트', 'GN1600':'클래식', 'GN0600':'락', 'GN0500':'인디', 'GN1700':'재즈', 'GN1100':'일렉트로닉'}
 
     selectImageButton.addEventListener('click', function () {
         imageInput.click(); // Trigger the file input element
@@ -352,9 +355,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     var s = document.getElementById('age_p');
                     s.innerText = s.textContent = person_data[0] = data.age;
                     var l = document.getElementById('gender_p');
-                    l.innerText = l.textContent = person_data[0] = data.gender;
+                    l.innerText = l.textContent = person_data[1] = data.gender;
                     var q = document.getElementById('emotion_p');
-                    q.innerText = q.textContent = person_data[0]= data.emotion;
+                    q.innerText = q.textContent = person_data[2]= data.emotion;
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -373,7 +376,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     // Handle the response from the server
-                    music_data = data.data
+                    for (let i = 0; i < 3; i++) {
+                        music_data[i] = codes[data.data[i]];
+                    }
+                    var s = document.getElementById('app_li');
+                    s.innerText = music_data[0];
+                    var l = document.getElementById('card_li');
+                    l.innerText = music_data[1];
+                    var q = document.getElementById('web_li');
+                    q.innerText = music_data[2];
+                    var j = 0;
+                    for (let container of ['app', 'card', 'web']) {
+                        for (let i = 1; i < 4; i++) {
+                            var appdiv = document.getElementById(container + i);
+                            var texth4 = appdiv.querySelector(".portfolio-info h4");
+                            texth4.textContent = data.songs[j][0][i - 1];
+                            var textp = appdiv.querySelector("portfolio-info p");
+                            textp.textContent = data.songs[j][1][i - 1];
+                            var imgs = appdiv.querySelector(".portfolio-wrap img")
+                            imgs.src = data.songs[j][2][i - 1]
+                        }
+                        j++;
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);

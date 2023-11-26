@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
 import requests
-
+from bs4 import BeautifulSoup as bs
 import pandas as pd
 import random
 
@@ -29,8 +29,24 @@ class Music_api(APIView):
     def post(self, request, format=None):
         data = request.data.get('data')
         values = [round(random.uniform(-0.8, 0.8), 1) for _ in range(11)]
-        temp = ((MUSIC_DB.loc[data[0]]+MUSIC_DB.loc[data[1]])*(values+MUSIC_DB.loc[data[2]])).nlargest(3).index.tolist()
-        data = {"data": temp}
+        genres = ((MUSIC_DB.loc[data[0]]+MUSIC_DB.loc[data[1]])*(values+MUSIC_DB.loc[data[2]])).nlargest(3).index.tolist()
+        genres = MUSIC_DB.loc['code', genres]
+        user_agent = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
+        lst = []
+        for code in genres:
+            ls = []
+            res = requests.get('https://www.melon.com/genre/song_list.htm?gnrCode='+code, headers=user_agent)
+            soup = bs(res.text, 'html.parser')
+            songs = soup.select('div.ellipsis.rank01')
+            ls.append([x.text.strip() for x in songs[:3]])
+            artists = soup.select('div.ellipsis.rank02')
+            tt = [x.text.strip() for x in artists[:3]]
+            ls.append([x[:len(x)//2] for x in tt])
+            album_art = soup.find_all('img', {"width":60})
+            ls.append([x['src'] for x in album_art[:3]])
+            lst.append(ls)
+        data = {"data": genres, "songs": lst}
         return Response(data, status=status.HTTP_200_OK)
 
     def get(self, request, format=None):
