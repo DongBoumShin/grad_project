@@ -36,14 +36,25 @@ class Music_api(APIView):
         lst = []
         for code in genres:
             ls = []
-            res = requests.get('https://www.melon.com/genre/song_list.htm?gnrCode='+code, headers=user_agent)
+            selector1 = 'div.ellipsis.rank01'
+            selector2 = 'div.ellipsis.rank02'
+            selector3 = {"width":60}
+            if code == "GN1700":
+                res = requests.get('https://www.melon.com/genre/jazz_list.htm?gnrCode=GN1700', headers=user_agent)
+            elif code == "GN1600":
+                res = requests.get('https://www.melon.com/genre/classic_list.htm?gnrCode=GN1600', headers=user_agent)
+                selector1 = 'a.ellipsis.album_name'
+                selector2 = 'span.ellipsis.artist'
+                selector3 = {"width":180}
+            else:
+                res = requests.get('https://www.melon.com/genre/song_list.htm?gnrCode='+code, headers=user_agent)
             soup = bs(res.text, 'html.parser')
-            songs = soup.select('div.ellipsis.rank01')
+            songs = soup.select(selector1)
             ls.append([x.text.strip() for x in songs[:3]])
-            artists = soup.select('div.ellipsis.rank02')
+            artists = soup.select(selector2)
             tt = [x.text.strip() for x in artists[:3]]
             ls.append([x[:len(x)//2] for x in tt])
-            album_art = soup.find_all('img', {"width":60})
+            album_art = soup.find_all('img', selector3)
             ls.append([x['src'] for x in album_art[:3]])
             lst.append(ls)
         data = {"data": genres, "songs": lst}
