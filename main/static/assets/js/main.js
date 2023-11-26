@@ -366,43 +366,48 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const datafield = document.getElementById('age_p')
-    datafield.addEventListener('change', function () {
-        if (person_data != ['default', 'default ', 'default',]) {
-            const endpoint = '/music_endpoint/'
-            fetch(endpoint, {
-                method: 'POST',
-                body: person_data,
+    var config = { attributes: true, childList: true, subtree: true };
+
+    var observer = new MutationObserver((list) => {
+        const endpoint = '/music_endpoint/'
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Set the content type to JSON
+            },
+            body: JSON.stringify({'data' : person_data}), // Convert the array to a JSON string
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server
+                for (let i = 0; i < 3; i++) {
+                    music_data[i] = codes[data.data[i]];
+                }
+                var s = document.getElementById('app_li');
+                s.innerText = music_data[0];
+                var l = document.getElementById('card_li');
+                l.innerText = music_data[1];
+                var q = document.getElementById('web_li');
+                q.innerText = music_data[2];
+                var j = 0;
+                for (let container of ['app', 'card', 'web']) {
+                    for (let i = 1; i < 4; i++) {
+                        var appdiv = document.getElementById(container + i);
+                        var texth4 = appdiv.querySelector(".portfolio-info h4");
+                        texth4.textContent = data.songs[j][0][i - 1];
+                        var textp = appdiv.querySelector("portfolio-info p");
+                        textp.textContent = data.songs[j][1][i - 1];
+                        var imgs = appdiv.querySelector(".portfolio-wrap img")
+                        imgs.src = data.songs[j][2][i - 1]
+                    }
+                    j++;
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response from the server
-                    for (let i = 0; i < 3; i++) {
-                        music_data[i] = codes[data.data[i]];
-                    }
-                    var s = document.getElementById('app_li');
-                    s.innerText = music_data[0];
-                    var l = document.getElementById('card_li');
-                    l.innerText = music_data[1];
-                    var q = document.getElementById('web_li');
-                    q.innerText = music_data[2];
-                    var j = 0;
-                    for (let container of ['app', 'card', 'web']) {
-                        for (let i = 1; i < 4; i++) {
-                            var appdiv = document.getElementById(container + i);
-                            var texth4 = appdiv.querySelector(".portfolio-info h4");
-                            texth4.textContent = data.songs[j][0][i - 1];
-                            var textp = appdiv.querySelector("portfolio-info p");
-                            textp.textContent = data.songs[j][1][i - 1];
-                            var imgs = appdiv.querySelector(".portfolio-wrap img")
-                            imgs.src = data.songs[j][2][i - 1]
-                        }
-                        j++;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
+    observer.observe(datafield, config);
+    
 });
 

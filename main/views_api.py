@@ -12,15 +12,17 @@ class AI_api(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, format=None):
-        data = requests.post(URL, json=request)
+        #data = requests.post(URL, json=request)
+        data = {'age':'ybs', 'gender':'men', 'emotion':'up'}
         return Response(data, status=status.HTTP_200_OK)
 
     def get(self, request, format=None):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-MUSIC_DB = pd.read_csv("music_db.csv")
+MUSIC_DB = pd.read_csv("main/music_db.csv")
 MUSIC_DB = MUSIC_DB.set_index("dist")
+MUSIC_DB.iloc[:-1] = MUSIC_DB.iloc[:-1].astype(float)
 MUSIC_DB['OST'] = MUSIC_DB['OST']*0
 
 class Music_api(APIView):
@@ -29,8 +31,9 @@ class Music_api(APIView):
     def post(self, request, format=None):
         data = request.data.get('data')
         values = [round(random.uniform(-0.8, 0.8), 1) for _ in range(11)]
-        genres = ((MUSIC_DB.loc[data[0]]+MUSIC_DB.loc[data[1]])*(values+MUSIC_DB.loc[data[2]])).nlargest(3).index.tolist()
-        genres = MUSIC_DB.loc['code', genres]
+        genres = ((MUSIC_DB.loc[data[0]]+MUSIC_DB.loc[data[1]])*(values+MUSIC_DB.loc[data[2]])).astype(float)
+        genres = genres.nlargest(3).index.tolist()
+        genres = MUSIC_DB.loc['codes', genres]
         user_agent = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
         lst = []
