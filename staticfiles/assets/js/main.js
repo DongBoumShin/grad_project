@@ -346,11 +346,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Create a FormData object and append the file to it
             const formData = new FormData();
             formData.append('image', file);
-
+            console.log(formData);
             // Send the FormData to the server using fetch
-            //           ߿   ߰        
-            //const endpoint = 'http://3.39.71.38/ai_endpoint/'
-            const endpoint = '/ai_endpoint/'
+            const endpoint = 'http://3.39.71.38/ai_endpoint/'
+            //const endpoint = '/ai_endpoint/'
             fetch(endpoint, {
                 method: 'POST',
                 body: formData,
@@ -358,16 +357,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     // Handle the response from the server
-                    data.age = decodeURIComponent(JSON.parse('"' + data.age + '"'));
-                    data.gender = decodeURIComponent(JSON.parse('"' + data.gender + '"'));
-                    data.emotion = decodeURIComponent(JSON.parse('"' + data.emotion + '"'));
                     console.log(data)
-                    var s = document.getElementById('age_p');
-                    s.innerText = s.textContent = person_data[0] = data.age;
+                    
                     var l = document.getElementById('gender_p');
                     l.innerText = l.textContent = person_data[1] = data.gender;
                     var q = document.getElementById('emotion_p');
-                    q.innerText = q.textContent = person_data[2]= data.emotion;
+                    q.innerText = q.textContent = person_data[2] = data.emotion;
+                    var s = document.getElementById('age_p');
+                    s.innerText = s.textContent = person_data[0] = data.age;
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -379,8 +376,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var config = { attributes: true, childList: true, subtree: true };
 
     var observer = new MutationObserver((list) => {
-        //const endpoint = 'http://3.39.71.38/music_endpoint/'
-        const endpoint = '/music_endpoint/'
+        const endpoint = 'http://3.39.71.38/music_endpoint/'
+        //const endpoint = '/music_endpoint/'
         fetch(endpoint, {
             method: 'POST',
             headers: {
