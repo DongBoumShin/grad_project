@@ -9,7 +9,7 @@ import random
 from .forms import ImageUploadForm
 
 
-URL = "http://172.31.39.43:8080"
+URL = "http://172.31.39.43:8080/predict"
 class AI_api(APIView):
     permission_classes = [permissions.AllowAny]
 
