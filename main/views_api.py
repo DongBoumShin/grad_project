@@ -12,8 +12,8 @@ class AI_api(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, format=None):
-        #data = requests.post(URL, json=request)
-        data = {'age':'ybs', 'gender':'men', 'emotion':'up'}
+        data = requests.post(URL, json=request)
+        #data = {'age':'ybs', 'gender':'men', 'emotion':'up'}
         return Response(data, status=status.HTTP_200_OK)
 
     def get(self, request, format=None):
@@ -30,6 +30,7 @@ class Music_api(APIView):
 
     def post(self, request, format=None):
         data = request.data.get('data')
+        print(data)
         values = [round(random.uniform(-0.8, 0.8), 1) for _ in range(11)]
         genres = ((MUSIC_DB.loc[data[0]]+MUSIC_DB.loc[data[1]])*(values+MUSIC_DB.loc[data[2]])).astype(float)
         genres = genres.nlargest(3).index.tolist()
