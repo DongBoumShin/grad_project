@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup as bs
 import pandas as pd
 import random
 
-URL = "http://"
+URL = "http://172.31.39.43:8080"
 class AI_api(APIView):
     permission_classes = [permissions.AllowAny]
 
