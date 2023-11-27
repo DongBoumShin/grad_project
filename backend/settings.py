@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     ".ap-northeast-2.compute.amazonaws.com",
     "google.com",
-    "172.",
+    "172.*",
     ".murphyproject.store",
     "127.0.0.1",
 ]
