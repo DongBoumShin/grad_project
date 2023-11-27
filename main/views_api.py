@@ -19,7 +19,7 @@ class AI_api(APIView):
             # Access the uploaded file in-memory
             image_file = request.FILES['image']
             image_content = image_file.read()
-            data = requests.post(URL, files={'image': image_content})
+            data = requests.post(URL, files={'image': image_content}, timeout=(5,5))
         else:
             data = {'age':'ybs', 'gender':'men', 'emotion':'neutral'}
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
