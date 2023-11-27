@@ -6,14 +6,22 @@ import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import random
+from .forms import ImageUploadForm
 
 URL = "http://172.31.39.43:8080"
 class AI_api(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, format=None):
-        data = requests.post(URL, json=request)
-        #data = {'age':'ybs', 'gender':'men', 'emotion':'up'}
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Access the uploaded file in-memory
+            image_file = request.FILES['image']
+            image_content = image_file.read()
+            data = requests.post(URL, files={'image': image_content})
+        else:
+            data = {'age':'ybs', 'gender':'men', 'emotion':'up'}
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
         return Response(data, status=status.HTTP_200_OK)
 
     def get(self, request, format=None):
