@@ -280,17 +280,9 @@ function takePic() {
             let url = window.URL.createObjectURL(blob);
             img.src = url;
             console.log(url);
-
-            // Create a new File object
-            const file = new File([blob], "image.jpg");
-
-            // Create a new FileList object with the updated file
-            const fileList = new DataTransfer();
-            fileList.items.add(file);
-
-            // Assign the new FileList to the input tag
+            // Assign the blob to the input tag
             const imageInput = document.getElementById("imageInput");
-            imageInput.files = fileList.files;
+            imageInput.files[0] = new File([blob], "image.jpg");
         })
         .catch(error => console.log(error));
 }
@@ -321,8 +313,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let person_data = ['default', 'default ', 'default',];
     let music_data = ['Ballad', 'Ballad', 'Ballad'];
     const codes = {
-        'GN0100': 'ë°œë¼ë“œ', 'GN0200': 'ì•„ì´ëŒ', 'GN1500': 'OST', 'GN0300': 'í™í•©',
-        'GN0400':'RNB,ì†Œìš¸', 'GN0700':'íŠ¸ë¡œíŠ¸', 'GN1600':'í´ë˜ì‹', 'GN0600':'ë½', 'GN0500':'ì¸ë””', 'GN1700':'ì¬ì¦ˆ', 'GN1100':'ì¼ë ‰íŠ¸ë¡œë‹‰'}
+        'GN0100': '¹ß¶óµå', 'GN0200': '¾ÆÀÌµ¹', 'GN1500': 'OST', 'GN0300': 'ÈüÇÕ',
+        'GN0400':'RNB,¼Ò¿ï', 'GN0700':'Æ®·ÎÆ®', 'GN1600':'Å¬·¡½Ä', 'GN0600':'¶ô', 'GN0500':'ÀÎµğ', 'GN1700':'ÀçÁî', 'GN1100':'ÀÏ·ºÆ®·Î´Ğ'}
 
     selectImageButton.addEventListener('click', function () {
         imageInput.click(); // Trigger the file input element
@@ -341,14 +333,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const uploadButton = document.getElementById('uploadButton');
     uploadButton.addEventListener('click', function () {
         const file = imageInput.files[0];
-        console.log(file);
         if (file) {
             // Create a FormData object and append the file to it
             const formData = new FormData();
             formData.append('image', file);
 
             // Send the FormData to the server using fetch
-            //           ß¿   ß°        
+            // ¼­¹ö´Â ³ªÁß¿¡ Ãß°¡ÇÒ ¿¹Á¤
             //const endpoint = 'http://3.39.71.38/ai_endpoint/'
             const endpoint = '/ai_endpoint/'
             fetch(endpoint, {

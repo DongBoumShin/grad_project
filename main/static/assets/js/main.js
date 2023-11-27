@@ -280,9 +280,17 @@ function takePic() {
             let url = window.URL.createObjectURL(blob);
             img.src = url;
             console.log(url);
-            // Assign the blob to the input tag
+
+            // Create a new File object
+            const file = new File([blob], "image.jpg");
+
+            // Create a new FileList object with the updated file
+            const fileList = new DataTransfer();
+            fileList.items.add(file);
+
+            // Assign the new FileList to the input tag
             const imageInput = document.getElementById("imageInput");
-            imageInput.files[0] = new File([blob], "image.jpg");
+            imageInput.files = fileList.files;
         })
         .catch(error => console.log(error));
 }
@@ -313,8 +321,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let person_data = ['default', 'default ', 'default',];
     let music_data = ['Ballad', 'Ballad', 'Ballad'];
     const codes = {
-        'GN0100': '¹ß¶óµå', 'GN0200': '¾ÆÀÌµ¹', 'GN1500': 'OST', 'GN0300': 'ÈüÇÕ',
-        'GN0400':'RNB,¼Ò¿ï', 'GN0700':'Æ®·ÎÆ®', 'GN1600':'Å¬·¡½Ä', 'GN0600':'¶ô', 'GN0500':'ÀÎµð', 'GN1700':'ÀçÁî', 'GN1100':'ÀÏ·ºÆ®·Î´Ð'}
+        'GN0100': 'ë°œë¼ë“œ', 'GN0200': 'ì•„ì´ëŒ', 'GN1500': 'OST', 'GN0300': 'íž™í•©',
+        'GN0400':'RNB,ì†Œìš¸', 'GN0700':'íŠ¸ë¡œíŠ¸', 'GN1600':'í´ëž˜ì‹', 'GN0600':'ë½', 'GN0500':'ì¸ë””', 'GN1700':'ìž¬ì¦ˆ', 'GN1100':'ì¼ë ‰íŠ¸ë¡œë‹‰'}
 
     selectImageButton.addEventListener('click', function () {
         imageInput.click(); // Trigger the file input element
@@ -333,14 +341,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const uploadButton = document.getElementById('uploadButton');
     uploadButton.addEventListener('click', function () {
         const file = imageInput.files[0];
+        console.log(file);
         if (file) {
             // Create a FormData object and append the file to it
             const formData = new FormData();
             formData.append('image', file);
 
             // Send the FormData to the server using fetch
-            // ¼­¹ö´Â ³ªÁß¿¡ Ãß°¡ÇÒ ¿¹Á¤
             const endpoint = 'http://3.39.71.38/ai_endpoint/'
+            //const endpoint = '/ai_endpoint/'
             fetch(endpoint, {
                 method: 'POST',
                 body: formData,
@@ -351,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     data.age = decodeURIComponent(JSON.parse('"' + data.age + '"'));
                     data.gender = decodeURIComponent(JSON.parse('"' + data.gender + '"'));
                     data.emotion = decodeURIComponent(JSON.parse('"' + data.emotion + '"'));
-
+                    console.log(data)
                     var s = document.getElementById('age_p');
                     s.innerText = s.textContent = person_data[0] = data.age;
                     var l = document.getElementById('gender_p');
@@ -370,6 +379,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var observer = new MutationObserver((list) => {
         const endpoint = 'http://3.39.71.38/music_endpoint/'
+        //const endpoint = '/music_endpoint/'
         fetch(endpoint, {
             method: 'POST',
             headers: {

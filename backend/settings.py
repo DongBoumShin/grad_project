@@ -27,14 +27,11 @@ SECRET_KEY = 'django-insecure-jrt1k4-v8=yg5hda+bpm5b$f=(lp7ptq@68d%#_+66!zt1tgdd
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "*",
     ".ap-northeast-2.compute.amazonaws.com",
     "google.com",
-    "172-31-35-135",
+    "172.",
     ".murphyproject.store",
     "127.0.0.1",
-    "172.31.35.135",
-    "172.31.39.43"
 ]
 
 
