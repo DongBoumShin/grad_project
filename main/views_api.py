@@ -21,7 +21,7 @@ class AI_api(APIView):
             image_file = request.FILES['image']
             image_content = image_file.read()
             image_content = b64encode(image_content).decode('utf-8')
-            data = requests.post(URL, json={'image': image_content}, timeout=(5,5))
+            data = requests.post(URL, json={'image': image_content}, timeout=(5,5)).json()
         else:
             data = {'age':'ybs', 'gender':'men', 'emotion':'neutral'}
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
