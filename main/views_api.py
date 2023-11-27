@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import random
+from base64 import b64encode
 from .forms import ImageUploadForm
 
 
@@ -19,6 +20,7 @@ class AI_api(APIView):
             # Access the uploaded file in-memory
             image_file = request.FILES['image']
             image_content = image_file.read()
+            image_content = b64encode(image_content).decode('utf-8')
             data = requests.post(URL, json={'image': image_content}, timeout=(5,5))
         else:
             data = {'age':'ybs', 'gender':'men', 'emotion':'neutral'}
