@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Send the FormData to the server using fetch
             // 서버는 나중에 추가할 예정
-            const endpoint = '/ai_endpoint/'
+            const endpoint = 'http://3.39.71.38/ai_endpoint/'
             fetch(endpoint, {
                 method: 'POST',
                 body: formData,
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var config = { attributes: true, childList: true, subtree: true };
 
     var observer = new MutationObserver((list) => {
-        const endpoint = '/music_endpoint/'
+        const endpoint = 'http://3.39.71.38/music_endpoint/'
         fetch(endpoint, {
             method: 'POST',
             headers: {
