@@ -430,6 +430,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         textp.textContent = data.songs[j][1][i - 1];
                         var imgs = appdiv.querySelector(".portfolio-wrap img")
                         imgs.src = data.songs[j][2][i - 1]
+                        if (imgs && imgs.style) {
+                            imgs.style.width = imgs.style.height = 200;
+                        }
                     }
                     j++;
                 }
