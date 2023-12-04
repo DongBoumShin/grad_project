@@ -322,7 +322,25 @@ document.addEventListener('DOMContentLoaded', function () {
     let music_data = ['Ballad', 'Ballad', 'Ballad'];
     const codes = {
         'GN0100': '발라드', 'GN0200': '아이돌', 'GN1500': 'OST', 'GN0300': '힙합',
-        'GN0400':'RNB,소울', 'GN0700':'트로트', 'GN1600':'클래식', 'GN0600':'락', 'GN0500':'인디', 'GN1700':'재즈', 'GN1100':'일렉트로닉'}
+        'GN0400': 'RNB,소울', 'GN0700': '트로트', 'GN1600': '클래식', 'GN0600': '락', 'GN0500': '인디', 'GN1700': '재즈', 'GN1100': '일렉트로닉'
+    }
+    const age_comments = {
+        'ybs': '20대 정도로 보이시는군요.', 'obs': '40대 이상의 장년으로 보이십니다.',
+        'tens': '젊은 십대!', 'unknown': '얼굴을 식별할 수 없었거나, 나이를 예측하지 못했습니다.'
+    }
+    const gender_comments = {
+        'women': '여성으로 보이시네요.', 'men': '남성으로 보이십니다.', 'unknown': '얼굴을 식별할 수 없었거나, 성별을 예측하지 못했습니다.'
+    }
+    const emo_comments = {
+        'unknown': '얼굴을 식별할 수 없었거나, 감정을 예측하지 못했습니다.',
+        'angry': '조금 화가 나신 것 같습니다.',
+        'disgusting': '이런, 많이 역겨우신 것 같네요!',
+        'fear': '무서워 할 것 없습니다!',
+        'happy': '당신이 기쁘다니 저희도 기쁘네요!',
+        'neutral': '엄격, 근엄, 진지하게. 아니라면 그냥 피곤하신 건가요?',
+        'sad': '슬퍼하지 말아요',
+        'surprise': '서프라이즈!'
+    }
 
     selectImageButton.addEventListener('click', function () {
         imageInput.click(); // Trigger the file input element
@@ -360,11 +378,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(data)
                     
                     var l = document.getElementById('gender_p');
-                    l.innerText = l.textContent = person_data[1] = data.gender;
+                    l.innerText = l.textContent = person_data[1] = gender_comments[data.gender];
                     var q = document.getElementById('emotion_p');
-                    q.innerText = q.textContent = person_data[2] = data.emotion;
+                    q.innerText = q.textContent = person_data[2] = age_comments[data.emotion];
                     var s = document.getElementById('age_p');
-                    s.innerText = s.textContent = person_data[0] = data.age;
+                    s.innerText = s.textContent = person_data[0] = emo_comments[data.age];
                 })
                 .catch(error => {
                     console.error('Error:', error);
