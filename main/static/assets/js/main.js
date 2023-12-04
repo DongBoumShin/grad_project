@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         var imgs = appdiv.querySelector(".portfolio-wrap img")
                         imgs.src = data.songs[j][2][i - 1]
                         if (imgs && imgs.style) {
-                            imgs.style.width = imgs.style.height = 200;
+                            imgs.style.width = imgs.style.height = '500px';
                         }
                     }
                     j++;
