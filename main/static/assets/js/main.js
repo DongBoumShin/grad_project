@@ -378,11 +378,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(data)
                     
                     var l = document.getElementById('gender_p');
-                    l.innerText = l.textContent = person_data[1] = gender_comments[data.gender];
+                    person_data[1] = data.gender
+                    l.innerText = l.textContent = gender_comments[data.gender];
                     var q = document.getElementById('emotion_p');
-                    q.innerText = q.textContent = person_data[2] = emo_comments[data.emotion];
+                    person_data[2] = data.emotion
+                    q.innerText = q.textContent = emo_comments[data.emotion];
                     var s = document.getElementById('age_p');
-                    s.innerText = s.textContent = person_data[0] = age_comments[data.age];
+                    person_data[0] = data.age
+                    s.innerText = s.textContent = age_comments[data.age];
                 })
                 .catch(error => {
                     console.error('Error:', error);
