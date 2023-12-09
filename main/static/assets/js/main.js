@@ -246,11 +246,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var cameraView = document.getElementById("cameraView");
     var aboutimg = document.getElementById("aboutImg");
     const uploadButton = document.getElementById('uploadButton');
-    let tracker = 0;
     function do_this() {
         takePic();
-        console.log("has run for ", tracker);
-        tracker += 1;
         uploadButton.click();
     };
     let intervalID;
@@ -259,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mainInit();
             cameraFlag = 1;
             aboutimg.style.display = "none";
-            intervalID = setInterval(do_this, 100);
+            setTimeout(function () { intervalID = setInterval(do_this, 100); }, 100);
         }
         else if (cameraFlag == 1) {
             takePic();
