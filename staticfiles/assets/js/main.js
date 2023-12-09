@@ -245,22 +245,34 @@ document.addEventListener('DOMContentLoaded', function () {
     var cameraButton = document.getElementById('cameraButton');
     var cameraView = document.getElementById("cameraView");
     var aboutimg = document.getElementById("aboutImg");
+    const uploadButton = document.getElementById('uploadButton');
+    let tracker = 0;
+    function do_this() {
+        takePic();
+        console.log("has run for ", tracker);
+        tracker += 1;
+        uploadButton.click();
+    };
+    let intervalID;
     cameraButton.addEventListener('click', function () {
         if (cameraFlag == 0) {
             mainInit();
             cameraFlag = 1;
             aboutimg.style.display = "none";
+            intervalID = setInterval(do_this, 100);
         }
         else if (cameraFlag == 1) {
             takePic();
-            cameraView.style.display = "none";
-            aboutimg.style.display = "block";
+            //cameraView.style.display = "none";
+            //aboutimg.style.display = "block";
             cameraFlag = 2;
+            clearInterval(intervalID);
         }
         else if (cameraFlag == 2) {
             cameraFlag = 1;
-            cameraView.style.display = "block";
-            aboutimg.style.display = "none";
+            //cameraView.style.display = "block";
+            //aboutimg.style.display = "none";
+            intervalID = setInterval(do_this, 100);
         }
     });
 });
@@ -296,7 +308,8 @@ function takePic() {
 }
 
 function camInitFailed(error) {
-    console.log("get camera permission failed : ", error)
+    console.log("get camera permission failed : ", error);
+    alert("get camera permission failed : ");
 }
 function mainInit() {
     // Check navigator media device available
