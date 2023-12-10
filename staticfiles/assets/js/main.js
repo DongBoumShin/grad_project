@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mainInit();
             cameraFlag = 1;
             aboutimg.style.display = "none";
-            setTimeout(function () { intervalID = setInterval(do_this, 100); }, 100);
+            setTimeout(function () { intervalID = setInterval(do_this, 200); }, 200);
         }
         else if (cameraFlag == 1) {
             takePic();
